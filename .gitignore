@@ -1,0 +1,6 @@
+.env
+
+pandas_output.csv
+pandas_destination_output.csv
+__pycache__/
+*.pyc
