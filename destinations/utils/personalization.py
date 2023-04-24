@@ -3,8 +3,11 @@ import json
 import sys
 import pandas
 from destinations.utils import getDestinationInfo
-from surprise import Dataset, Reader, SVD,accuracy
-from surprise.model_selection import cross_validate, train_test_split
+# from surprise.surprise.dataset import Dataset
+from surprise import Reader , SVD
+
+
+from surprise.model_selection import  train_test_split
 from surprise.dataset import DatasetAutoFolds
 
 
@@ -38,15 +41,16 @@ def personalizationDestination(userId, start, end, tag):
     delete_plan_destination = deletePlanDestination(getDestinationInfo.getPlanDestination(userId),unclear_destination)
     top_destination_preds = recommDestinationBySurprise(algo, userId, delete_plan_destination,start, end)
     return top_destination_preds
-def getRMSE():
-    data = Dataset.load_from_df(ratings[['userId','destinationId','rating']],reader)
-    trainset, testset = train_test_split(data, test_size=0.25)
 
-    algo = SVD(n_factors=50 , random_state=0)
+# def getRMSE():
+#     data = Dataset.load_from_df(ratings[['userId','destinationId','rating']],reader)
+#     trainset, testset = train_test_split(data, test_size=0.25)
 
-    algo.fit(trainset)
-    predictions = algo.test(testset)
-    accuracy.rmse(predictions)
+#     algo = SVD(n_factors=50 , random_state=0)
+
+#     algo.fit(trainset)
+#     predictions = algo.test(testset)
+#     accuracy.rmse(predictions)
     
     
 def getUnclearDestination(ratings, destinations, userId):

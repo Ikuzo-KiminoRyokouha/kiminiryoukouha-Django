@@ -6,6 +6,7 @@ def dataToCSV():
     conn = accessDatabase()
     selectRatingSql = 'SELECT userId, destinationId,rating , createdAt FROM rating'
     selectDestinationSql = 'SELECT id , title , createdAT, cat3 FROM destination '
+    print("dd")
     rating = pandas.read_sql_query(selectRatingSql,conn)
     destination = pandas.read_sql_query(selectDestinationSql,conn)
     rating.to_csv(r'pandas_output.csv',index=False ,header=False)
@@ -13,4 +14,5 @@ def dataToCSV():
 
     conn.close()
 print('reset rating data and ')
+
 dataToCSV()

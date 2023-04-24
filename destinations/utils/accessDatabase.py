@@ -1,4 +1,5 @@
-import pymysql
+import MySQLdb
+MySQLdb.version_info = (1, 4, 3, "final", 0)
 import environ
 # pip install pymysql
 
@@ -8,10 +9,10 @@ def accessDatabase():
         DEBUG=(bool, False)
     )
 
-    conn = pymysql.connect(host=env('DB_HOST'),
+    conn = MySQLdb.connect(host=env('DB_HOST'),
                             user=env('DB_USERNAME'), 
                             password=env('DB_PASSWORD'), 
-                            db='ikuzo',
+                            db='ikuzo2',
                             charset='utf8'
                             )
     return conn
