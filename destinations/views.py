@@ -20,11 +20,15 @@ class IndexView(View):
     def post(self, request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)['data']
+        print(body)
         userId = body['userId']
         tag = body['tag']
         start = body['start']
         end = body['end']
-        personalizationItem = personalizationDestination(userId, start,end,tag)
+        areacode = body['areacode']
+        sigungucode = body['sigungucode']
+        
+        personalizationItem = personalizationDestination(userId, start,end,tag,areacode,sigungucode)
         print(personalizationItem)
         return HttpResponse(personalizationItem )
 

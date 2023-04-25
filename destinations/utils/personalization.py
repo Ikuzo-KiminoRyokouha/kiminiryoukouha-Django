@@ -26,14 +26,15 @@ trainset =data_folds.build_full_trainset()
 algo = SVD(n_epochs=20, n_factors=50, random_state=0)
 algo.fit(trainset)
 
-def personalizationDestination(userId, start, end, tag):
+def personalizationDestination(userId, start, end, tag , areacode , sigungucode):
     # 여행지에 대한 상세 속성 정보 DataFrame로딩
     destinations = pandas.read_csv(currentPath+'/pandas_destination_output.csv').values.tolist()
     selectByTagDestination = []
     for destination in destinations:
-        if(destination[3] in tag):
+        if(destination[3] in tag and destination[4] == int(areacode) and destination[5] == int(sigungucode)):
             selectByTagDestination.append(destination)
-    destinations = pandas.DataFrame(selectByTagDestination,columns=['id','title','createAt', 'cat3'])
+    destinations = pandas.DataFrame(selectByTagDestination,columns=['id','title','createAt', 'cat3' , 'areacode','sigungucode'])
+    
     unclear_destination = getUnclearDestination(ratings, destinations, userId)
     delete_plan_destination = deletePlanDestination(getDestinationInfo.getPlanDestination(userId),unclear_destination)
     top_destination_preds = recommDestinationBySurprise(algo, userId, delete_plan_destination,start, end)
