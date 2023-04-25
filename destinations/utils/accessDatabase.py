@@ -11,7 +11,7 @@ def accessDatabase():
     conn = pymysql.connect(host=env('DB_HOST'),
                             user=env('DB_USERNAME'), 
                             password=env('DB_PASSWORD'), 
-                            db='ikuzo',
+                            db=env('DB_NAME'),
                             charset='utf8'
                             )
     return conn
