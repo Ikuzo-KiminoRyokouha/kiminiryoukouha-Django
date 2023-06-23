@@ -1,5 +1,6 @@
 import pymysql
 import environ
+pymysql.version_info = (1, 4, 3, "final", 0)
 # pip install pymysql
 
 def accessDatabase():

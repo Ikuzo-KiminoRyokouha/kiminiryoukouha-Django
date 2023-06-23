@@ -2,9 +2,6 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
-import pandas
-import pymysql
-import environ
 from destinations.utils.dataToCSV import dataToCSV
 from destinations.utils.personalization import personalizationDestination
 
